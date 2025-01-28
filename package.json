@@ -1,0 +1,9 @@
+{
+    "scripts": {
+      "dev": "nodemon server/index.js",
+      "client": "cd client && npm run dev",
+      "build": "cd client && npm run build",
+      "start": "node server/index.js"
+    }
+  }
+  
