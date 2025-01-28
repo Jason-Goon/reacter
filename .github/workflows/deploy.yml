@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/react-tailwind-app
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/moneysaver:latest
       
       - name: Setup SSH Known Hosts
         run: |
