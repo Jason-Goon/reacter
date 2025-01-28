@@ -21,9 +21,13 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H 95.179.191.48 >> ~/.ssh/known_hosts
-
+      - name: Setup SSH Known Hosts
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          ssh-keyscan -H 95.179.191.48 >> ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+        
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
