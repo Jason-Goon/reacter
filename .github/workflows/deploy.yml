@@ -36,7 +36,7 @@ jobs:
           username: kendo
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/react-tailwind-app
+            docker pull ${{ secrets.DOCKER_USERNAME }}/moneysaver:latest
             docker stop react-app || true
             docker rm react-app || true
             docker run -d --name react-app -p 3005:3005 ${{ secrets.DOCKER_USERNAME }}/react-tailwind-app
