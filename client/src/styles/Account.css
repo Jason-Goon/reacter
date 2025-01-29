@@ -1,0 +1,75 @@
+/* src/styles/Account.css */
+:root {
+    --color-background: #131212;
+    --color-surface: #161515;
+    --color-primary: #FFB086;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #B3B3B3;
+  }
+  
+  .account-container {
+    min-height: calc(100vh - 140px);
+    padding: 2rem 1rem;
+  }
+  
+  .account-header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .account-header h1 {
+    color: var(--color-primary);
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .account-card {
+    background-color: var(--color-surface);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid var(--color-primary);
+    opacity: 0.2;
+  }
+  
+  .account-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .info-group label {
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+  }
+  
+  .info-group p {
+    color: var(--color-text-primary);
+    font-size: 1.125rem;
+  }
+  
+  .logout-button {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 0.75rem;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .logout-button:hover {
+    opacity: 0.9;
+  }
+  

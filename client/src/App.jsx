@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Login from './components/Login'
 import './styles/App.css'
+import Account from './components/Account'
 
 function App() {
   return (
@@ -54,6 +55,13 @@ function App() {
                   <div className="page-container">
                     <h1 className="page-title">Budget</h1>
                   </div>
+                } 
+              />
+              <Route 
+               path="/account" 
+               element=
+                {
+                <Account />
                 } 
               />
               <Route 
