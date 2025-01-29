@@ -10,7 +10,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const res = await fetch('http://api.magenta.red/dev/login', {
+      const res = await fetch('/dev/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

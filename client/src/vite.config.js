@@ -7,7 +7,11 @@ export default defineConfig({
     server: {
         port: 3006,
         proxy: {
-            '/dev': 'http://localhost:3005'
+            '/dev/api': {
+                target: 'http://localhost:3005',
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/dev\/api/, '/dev')
+            }
         }
     }
 });
