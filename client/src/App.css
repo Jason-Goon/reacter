@@ -1,42 +1,62 @@
-#root {
-  max-width: 1280px;
+:root {
+  --color-background: #131212;
+  --color-surface: #161515;
+  --color-primary: #FFB086;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B3B3B3;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.main-content {
+  flex-grow: 1;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 1rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.page-container {
+  max-width: 56rem;
+  margin: 0 auto;
 }
 
-@keyframes logo-spin {
+.page-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--color-primary);
+}
+
+.content-card {
+  background-color: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-primary);
+  opacity: 0.2;
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
 }

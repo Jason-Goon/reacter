@@ -1,5 +1,6 @@
 // src/components/Login.jsx
 import { useState } from 'react'
+import '../styles/Login.css'
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -9,37 +10,43 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // Mock login for now
-    if (credentials.username === "admin" && credentials.password === "admin") {
-      console.log("Logged in!")
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      })
+      const data = await res.json()
+      console.log(data)
+    } catch (err) {
+      console.error(err)
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-center text-gray-800">Welcome Back</h2>
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          <input
-            type="text"
-            placeholder="Username"
-            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-            value={credentials.username}
-            onChange={(e) => setCredentials({...credentials, username: e.target.value})}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-            value={credentials.password}
-            onChange={(e) => setCredentials({...credentials, password: e.target.value})}
-          />
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Sign in
-          </button>
+    <div className="login-container">
+      <div className="login-card">
+        <h2>Welcome Back</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Username"
+              value={credentials.username}
+              onChange={(e) => setCredentials({...credentials, username: e.target.value})}
+            />
+          </div>
+          <div className="input-group">
+            <input
+              type="password"
+              placeholder="Password"
+              value={credentials.password}
+              onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+            />
+          </div>
+          <button type="submit">Sign In</button>
         </form>
       </div>
     </div>

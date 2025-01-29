@@ -18,11 +18,23 @@ function App() {
                 element={
                   <div className="page-container">
                     <h1 className="page-title">
-                      Welcome to MoneyTracker
+                      MONEYSAVER
                     </h1>
                     <div className="content-card">
                       <p className="text-secondary">
-                        Track your expenses and manage your budget with ease
+                       SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEY
+                      </p>
+                    </div>
+
+                    <div className="content-card">
+                      <p className="text-secondary">
+                       SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEY
+                      </p>
+                    </div>
+
+                    <div className="content-card">
+                      <p className="text-secondary">
+                       SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEYSAVE MONEY SAVE MONEY SAVE MONEY
                       </p>
                     </div>
                   </div>
