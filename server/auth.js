@@ -5,7 +5,7 @@ const VALID_USER = {
     role: 'developer'
 };
 
-app.post('/dev/api/login', (req, res) => {
+app.post('/dev/login', (req, res) => {
     const { username, password } = req.body;
     
     if (username === VALID_USER.username && 
