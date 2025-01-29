@@ -5,6 +5,9 @@ export default defineConfig({
     base: '/dev/',
     plugins: [react()],
     server: {
-        port: 3005
+        port: 3006,
+        proxy: {
+            '/dev': 'http://localhost:3005'
+        }
     }
 });
