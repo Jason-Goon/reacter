@@ -10,6 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      # Build the client first
+      - name: Build client
+        run: |
+          cd client
+          npm install
+          npm run build
+      
       - name: Build Docker images
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/moneysaver-server .
@@ -25,17 +32,3 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/moneysaver-server
           docker push ${{ secrets.DOCKER_USERNAME }}/moneysaver-client
-      
-      - name: Deploy to VPS
-        uses: appleboy/ssh-action@master
-        with:
-          host: 95.179.191.48
-          username: kendo
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/moneysaver-server
-            docker pull ${{ secrets.DOCKER_USERNAME }}/moneysaver-client
-            docker stop server client || true
-            docker rm server client || true
-            docker run -d --name server -p 3005:3005 ${{ secrets.DOCKER_USERNAME }}/moneysaver-server
-            docker run -d --name client -p 3006:3006 ${{ secrets.DOCKER_USERNAME }}/moneysaver-client
