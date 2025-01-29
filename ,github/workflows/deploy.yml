@@ -1,0 +1,59 @@
+name: Deploy
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Client setup
+      - name: Build React
+        run: |
+          cd client
+          npm install --force
+          npm run build
+          ls -la dist  # Nuclear verification
+
+      # Server setup
+      - name: Install server deps
+        run: |
+          npm install
+
+      # Docker builds
+      - name: Build images
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/moneysaver-server .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/moneysaver-client -f client/Dockerfile client
+
+      # Push to registry
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Push images
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/moneysaver-server
+          docker push ${{ secrets.DOCKER_USERNAME }}/moneysaver-client
+
+      # Deployment
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: 95.179.191.48
+          username: kendo
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Stop old containers
+            docker stop server client || true
+            docker rm server client || true
+
+            # Pull new images
+            docker pull ${{ secrets.DOCKER_USERNAME }}/moneysaver-server
+            docker pull ${{ secrets.DOCKER_USERNAME }}/moneysaver-client
+
+            # Run new containers
+            docker run -d --name server -p 3005:3005 ${{ secrets.DOCKER_USERNAME }}/moneysaver-server
+            docker run -d --name client -p 3006:80 ${{ secrets.DOCKER_USERNAME }}/moneysaver-client
