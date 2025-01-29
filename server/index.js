@@ -10,7 +10,8 @@ const VALID_CREDENTIALS = {
   password: 'dogballs'
 };
 
-app.post('/api/login', (req, res) => {
+// Changed from /api/login to /dev/login to match nginx location
+app.post('/dev/login', (req, res) => {
   const { username, password } = req.body;
   
   if (username === VALID_CREDENTIALS.username && 
@@ -26,6 +27,11 @@ app.post('/api/login', (req, res) => {
       message: 'Invalid credentials' 
     });
   }
+});
+
+// Add a root route for /dev/
+app.get('/dev/', (req, res) => {
+  res.json({ message: 'Server is running' });
 });
 
 app.listen(3005, () => {
