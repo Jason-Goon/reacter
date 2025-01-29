@@ -14,3 +14,5 @@ const handleSubmit = async (e) => {
         console.error(err)
     }
 }
+
+export default App;  // Add this line

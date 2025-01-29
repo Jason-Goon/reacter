@@ -1,5 +1,6 @@
 FROM node:20-alpine
 WORKDIR /app
+COPY dist /usr/share/nginx/html
 COPY package*.json ./
 RUN npm install
 COPY . .
